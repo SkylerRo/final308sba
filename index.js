@@ -112,10 +112,14 @@ const CourseInfo = {
     //your program should throw an error, letting the user know that the input was invalid. 
     //Similar data validation should occur elsewhere within the program.
   
-    if (ag.course_id !== course.id) {
-      throw new Error("Invalid input: Assignment group doesn't match course id.");
-    }
-  
+    try {
+      if (ag.course_id !== course.id)
+        {
+            throw new Error("Invalid input: Assignment group doesn't match course id.");
+      } console.log("Values are equal");
+     
+   } catch (error)
+      { console.error(error.message)}
     // all assignments from AssignmentGroup
   
     const assignments = ag.assignments;
@@ -150,6 +154,8 @@ const CourseInfo = {
       // finds the assignment for current submission's assignment_id in the assignments array.
       const assignment = assignments.find(assignment => assignment.id === submission.assignment_id);
   
+      // finds the assignment for current submission's assignment_id in the assignments array. Then checks if the submitted assignment is due or late.
+      //const assignment = assignments.find(assignment => assignment.id === submission.assignment_id) && new Date(learners[submission.submission.submitted_at]) >= new Date(AssignmentGroup.assignments.due_at);
       // if the assignment associated with the current submission exists.
   
       if (assignment) {
