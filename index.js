@@ -177,7 +177,22 @@ const CourseInfo = {
         // checks if the submission is late by comparing the submission's date to the assignment's due date
 
         const lateSubmission = new Date(submission.submission.submitted_at) > new Date(assignment.due_at);
-  
+        function checkIfDue(assignment){
+         let info = assignment.assignments
+         let dates = []
+         for(let i of info){
+          let due = i['due_at']
+          let todaysDate = new Date()
+          if(Date.parse(due)>Date.parse(todaysDate)){
+            dates.push('submitted late')
+          } else if(Date.parse(due)<=Date.parse(todaysDate)){
+            dates.push('Turned in on time')
+          } console.log(dates)
+         }
+        return dates
+        }
+        console.log(checkIfDue(AssignmentGroup))
+        
         // points_possible must be at least 1 to avoid division by zero
   
         let pointsPossible;
